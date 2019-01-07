@@ -34,7 +34,8 @@ class App extends Component {
           STRUCTURES.map(structure => {
             return (
               <div
-                className='menu-structure'
+                className={`menu-structure${
+                  structure.name === this.state.structureSelected ? ' selected' : ''}`}
                 key={structure.id}
                 onClick={() => this.selectStructure(structure.name)}>
                 <span>
@@ -59,9 +60,6 @@ class App extends Component {
     }
     return (
       <div id='content'>
-        <span>
-          {this.state.structureSelected}
-        </span>
         {component}
       </div>
     )
@@ -70,6 +68,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1 id="title">
+          {'Data Structures'}
+        </h1>
         {this.renderMenu()}
         {this.renderContent()}
       </div>
