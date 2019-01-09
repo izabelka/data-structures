@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Chart from './Chart';
 import StructureQueue from '../structures/queue';
 
 class Queue extends Component {
@@ -8,6 +9,9 @@ class Queue extends Component {
 
     this.state = {
       queue: null,
+      data: [12, 5, 6, 6, 9, 10],
+      width: 700,
+      height: 100,
     };
   }
 
@@ -20,8 +24,11 @@ class Queue extends Component {
       queue = new StructureQueue(...items);
     }
 
+    let data = this.state.data;
+    data.push(25);
     this.setState({
-      queue
+      queue,
+      data
     });
   }
 
@@ -34,18 +41,23 @@ class Queue extends Component {
   }
 
   render() {
+    console.log('queue this.state: ', this.state)
     return (
       <div className="structure-wrapper">
         <div
           className='button'
           onClick={() => this.addToQueue(1)}>
-          Add to queue
+          {'Add to queue'}
         </div>
         <div
           className='button'
           onClick={this.removeFromQueue}>
-          Remove from queue
+          {'Remove from queue'}
         </div>
+        <Chart
+          data={this.state.data}
+          size={[500,500]}
+          id='chart-queue'/>
       </div>
     );
   }
